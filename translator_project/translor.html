@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- 設定編碼為UTF-8 避免亂碼問題-->
+    <meta charset ="utf-8">
+	<!-- 此處為include knockOutjs.lib之處-->
+	<script type="text/javascript" src="http://knockoutjs.com/downloads/knockout-3.1.0.js"></script>
+</head>
+<body>
+    <p>請選擇翻譯目標文字
+     <select data-bind="value :target1">
+       <option value="1" selected>英文</option>
+       <option value="2" >中文</option>
+    </select>
+    </p>
+    <p>輸入 文字 :<input data-bind ="value : text1"></p>
+    <p>翻譯 文字 :<span data-bind="text : text2"></span></p>
+    <!-- 此處為 載入自己所寫的javascript code 通常要等到DOM ready 才載入-->
+    <script type="text/javascript" src="js/module.js"></script>
+</body>
+</html>
