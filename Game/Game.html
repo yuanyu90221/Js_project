@@ -1,0 +1,71 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <script type="text/javascript">
+    var start1 = 0,start2=0,start3=0, left = 0,center = 0, right = 0;
+    var slot1= 1,slot2= 1 , slot3 = 1,delay = 1000;//0.1 second
+    theImage = new Array();
+    for(var i=0; i <=4;i++)
+    {
+    	theImage[i] = new Image();
+    	theImage[i].src = "images/"+i+".jpg";
+    } 
+    function game1(){
+
+      if(slot1!=0)
+      {
+      	
+         start1 = 1;
+         left = Math.floor((Math.random()*1000))%5;
+         document.image1.src = theImage[left].src;
+         timeID1 = setTimeout("game1()",delay);
+      }
+    }
+    function game2(){
+
+      if(slot2!=0)
+      {
+      	
+         start2 = 1;
+         left = Math.floor((Math.random()*1000))%5;
+         document.image2.src = theImage[left].src;
+         timeID1 = setTimeout("game2()",delay);
+      }
+    }
+     function game3(){
+
+      if(slot3!=0)
+      {
+      	
+         start3 = 1;
+         left = Math.floor((Math.random()*1000))%5;
+         document.image3.src = theImage[left].src;
+         timeID1 = setTimeout("game3()",delay);
+      }
+    }
+    function stop1(){
+        if(slot1 ===0||slot2 ===0 ||slot3===0)
+        {
+        	start1 =0;
+            start2 =0;
+            start3 =0;
+        } 
+    }
+  </script>
+</head>
+<body>
+    <p>
+        <img  src= "images/1.jpg" name ="image1" height="250" width="250">
+        <img src= "images/1.jpg"  name ="image2" height="250" width="250">
+        <img src= "images/1.jpg"  name ="image3" height="250" width="250">
+    </p>
+    <p>
+    <button onclick="slot1 =1;if(start1!=0) return;game1()" vertical-align: middle >開始</button>
+    <button onclick="slot2 =1;if(start2!=0) return;game2()" vertical-align:middle >開始</button>
+    <button onclick="slot3 =1;if(start3!=0) return;game3()" vertical-align:middle >開始</button>
+    </p>
+      <button onclick="if(start1!=0||start2!=0||start3!=0) return;slot1 =1;game1();slot2 =1;game2();slot3 =1;game3()">全部開始</button>
+     <button onclick="slot1=0;slot2=0;slot3=0;stop1();">停止</button>
+    </p>
+</body>
+</html>
