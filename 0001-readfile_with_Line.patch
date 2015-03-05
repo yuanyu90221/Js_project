@@ -1,0 +1,120 @@
+From a8555fbbbf7fc3a9f89e219b23c4ca1cfde27034 Mon Sep 17 00:00:00 2001
+From: yuanyu90221 <yuanyu90221@gmail.com>
+Date: Fri, 30 Jan 2015 09:04:32 +0800
+Subject: [PATCH] readfile_with_Line
+
+---
+ prime_factor/Makefile               |   6 ++++++
+ prime_factor/readfile_with_Line.cpp |  41 ++++++++++++++++++++++++++++++++++++
+ prime_factor/readfile_with_Line.o   | Bin 0 -> 4247 bytes
+ 3 files changed, 47 insertions(+)
+ create mode 100644 prime_factor/Makefile
+ create mode 100644 prime_factor/readfile_with_Line.cpp
+ create mode 100644 prime_factor/readfile_with_Line.o
+
+diff --git a/prime_factor/Makefile b/prime_factor/Makefile
+new file mode 100644
+index 0000000..aef8a26
+--- /dev/null
++++ b/prime_factor/Makefile
+@@ -0,0 +1,6 @@
++all: readfile_with_Line.exe
++
++readfile_with_Line.exe: readfile_with_Line.o
++	g++ -o readfile_with_Line readfile_with_Line.o
++readfile_with_Line.o: readfile_with_Line.cpp
++	g++ -c readfile_with_Line.cpp
+diff --git a/prime_factor/readfile_with_Line.cpp b/prime_factor/readfile_with_Line.cpp
+new file mode 100644
+index 0000000..28f5740
+--- /dev/null
++++ b/prime_factor/readfile_with_Line.cpp
+@@ -0,0 +1,41 @@
++#include <iostream>
++#include <fstream>
++#include <string>
++#include <cstdio>
++#include <cstdlib>
++using namespace std;
++void usage(){
++	cout <<"usage:\n"
++	       "1) readfile_with_Line $file_name $number_Line_delete\n";
++	cout <<"2) readfile_with_Line $file_name $Tag_remove\n";
++}
++int main(int argc,char** argv)
++{
++	if(argc!=3)
++        {
++	  cerr<<"para number error\n";
++          return -1;
++        }
++
++	string file_name=argv[1];
++	int LineLast_delete = atoi(argv[2]);
++	string Tag_remove = argv[2];
++	string buffer;
++	int Line_counter=0;
++        fstream fin(file_name.c_str(),ios::in);
++        fstream fout("tempfile",ios::out);
++        while(getline(fin,buffer)){
++		Line_counter++;
++		if(Line_counter > LineLast_delete &&
++	           buffer.find(Tag_remove)==string::npos)
++                {
++                  fout << buffer<<endl;
++		}
++
++	}	
++	fin.close();
++	fout.close();
++	remove(file_name.c_str());
++	rename("tempfile",file_name.c_str());
++	return 0;
++}
+diff --git a/prime_factor/readfile_with_Line.o b/prime_factor/readfile_with_Line.o
+new file mode 100644
+index 0000000000000000000000000000000000000000..634faa20e08c6887893612d963b205fcd39ca3ad
+GIT binary patch
+literal 4247
+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
+ZqPD<h4O)Fjkt10xGKh!eZwJI)`3si>ZV3PY
+
+literal 0
+HcmV?d00001
+
+-- 
+1.9.4.msysgit.0
+
